@@ -10,14 +10,14 @@ Some (CI) systems are ready for docker but not so ready for Buildr and its depen
 
 ## Supported Versions
 
-| Buildr  | Ruby          | JDK    |
-| ------- | ------------- | ------ |
-| 1.4.20  | JRuby 1.17.16 | Java 7 |
-| 1.4.20  | JRuby 1.17.16 | Java 8 |
+| Tag               | Buildr  | Ruby          | JDK    |
+| ----------------- | ------- | ------------- | ------ |
+| 1.4.20-jruby-jdk7 | 1.4.20  | JRuby 1.17.16 | Java 7 |
+| 1.4.20-jruby-jdk8 | 1.4.20  | JRuby 1.17.16 | Java 8 |
 
 ## Limitations
 
-Currently there are only containers with JRuby and Buildr. Containers for plain rubies may come in future.
+Currently there are only containers with JRuby and Buildr. Containers for plain rubies may come in future. Also the maven repository is not yet mounted into the container.
 
 ## How to use "dockerized" Buildr?
 
@@ -25,7 +25,9 @@ The image bundles JRuby with a pre-installed version of buildr and its dependenc
 
 The container can be run in the working folder of the project to build. It needs to be mounted as a docker volume.
 
-    docker run --rm -ti -v `pwd`:/workspace
+    docker run --rm -ti -v `pwd`:/workspace vanto/apache-buildr:jruby-jdk7
+
+*Note*: On non-interactive setups like CI servers remove the `-ti`.
 
 Any buildr arguments can be appended and will be passed to buildr. Buildr will operate on the current directory, so you will have immediate access to the build results.
 
@@ -36,4 +38,3 @@ Run `make` to create a new image, `make clean` to remove the image. JRuby and Bu
 ## Thanks
  * [Jimmy Dyson](https://github.com/jimmidyson) for [docker-jruby](https://github.com/jimmidyson/docker-jruby), which served as a template for this project.
  * [deis.io](http://deis.io/) for the Makefile inspiration.
- 
