@@ -17,7 +17,7 @@ RUN gem install bundler
 RUN gem install buildr -v=${BUILDR_VERSION}
 
 ENV WORKSPACE /workspace
-VOLUME $DIRPATH
-WORKDIR $DIRPATH
+VOLUME /workspace
+WORKDIR /workspace
 
 ENTRYPOINT [ "buildr" ]
