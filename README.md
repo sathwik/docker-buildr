@@ -17,7 +17,7 @@ Some (CI) systems are ready for docker but not so ready for Buildr and its depen
 
 ## Limitations
 
-Currently there are only containers with JRuby and Buildr. Containers for plain rubies may come in future. Also the maven repository is not yet mounted into the container.
+Currently there are only containers with JRuby and Buildr. Containers for plain rubies may come in future.
 
 ## How to use "dockerized" Buildr?
 
@@ -29,11 +29,17 @@ The container can be run in the working folder of the project to build. It needs
 
 *Note*: On non-interactive setups like CI servers remove the `-ti`.
 
+If you want to use a shared local maven repository, just mount your local `.m2` directory into the docker container. This can be achieved by adding `-v $HOME/.m2:/root/.m2` to the command above.
+
 Any buildr arguments can be appended and will be passed to buildr. Buildr will operate on the current directory, so you will have immediate access to the build results.
+
+Example:
+
+    $ docker run --rm -ti -v `pwd`:/workspace vanto/apache-buildr:jruby-jdk7 clean package test=all
 
 ## How to build the image?
 
-Run `make` to create a new image, `make clean` to remove the image. JRuby and Buildr version numbers can be changed in the `Dockerfile`, docker tag names can be customized in the `Makefile`.
+Run `docker build --rm -t vanto/apache-buildr:dev .` in the respective directory to create a new image, `docker rmi vanto/apache-buildr:dev` to remove the image. JRuby and Buildr version numbers can be changed in the `Dockerfile`.
 
 ## Thanks
  * [Jimmy Dyson](https://github.com/jimmidyson) for [docker-jruby](https://github.com/jimmidyson/docker-jruby), which served as a template for this project.
