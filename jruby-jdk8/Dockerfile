@@ -3,7 +3,7 @@ FROM java:8
 MAINTAINER Tammo van Lessen
 
 ENV JRUBY_VERSION 1.7.16
-ENV BUILDR_VERSION 1.4.20
+ENV BUILDR_VERSION 1.4.21
 
 RUN mkdir /opt/jruby \
   && curl http://jruby.org.s3.amazonaws.com/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz \
