@@ -17,6 +17,8 @@ Some (CI) systems are ready for docker but not so ready for Buildr and its depen
 
 ## Limitations
 
+When run on Linux Docker runs as root. Thus, all files created by the container belong to root:root. This is a [well known](https://github.com/docker/docker/issues/3124) [Docker limitation](https://groups.google.com/d/msg/docker-user/7yRwk9hsmoE/8qJXa5MEnMQJ), which will hopefully be addressed soon. See _Linux-Specific Improvements and Dealing With Root_ at [this page](http://marmelab.com/blog/2014/09/10/make-docker-command.html) for a workaround.
+
 Currently there are only containers with JRuby and Buildr. Containers for plain rubies may come in future.
 
 ## How to use "dockerized" Buildr?
@@ -25,7 +27,7 @@ The image bundles JRuby with a pre-installed version of buildr and its dependenc
 
 The container can be run in the working folder of the project to build. It needs to be mounted as a docker volume.
 
-    docker run --rm -ti -v `pwd`:/workspace vanto/apache-buildr:jruby-jdk7
+    docker run --rm -ti -v `pwd`:/workspace vanto/apache-buildr:latest-jruby-jdk7
 
 *Note*: On non-interactive setups like CI servers remove the `-ti`.
 
@@ -35,7 +37,7 @@ Any buildr arguments can be appended and will be passed to buildr. Buildr will o
 
 Example:
 
-    $ docker run --rm -ti -v `pwd`:/workspace vanto/apache-buildr:jruby-jdk7 clean package test=all
+    $ docker run --rm -ti -v `pwd`:/workspace vanto/apache-buildr:latest-jruby-jdk7 clean package test=all
 
 ## How to build the image?
 
