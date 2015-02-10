@@ -16,6 +16,9 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc
 RUN gem install bundler
 RUN gem install buildr -v=${BUILDR_VERSION}
 
+# make /tmp available to all users.
+RUN chmod 777 -R /tmp && chmod o+t -R /tmp
+
 ENV WORKSPACE /workspace
 VOLUME /workspace
 WORKDIR /workspace
