@@ -20,7 +20,8 @@ RUN gem install buildr -v=${BUILDR_VERSION}
 # make /tmp available to all users.
 RUN chmod 777 -R /tmp && chmod o+t -R /tmp
 
-RUN update-alternatives --install /usr/local/bin/buildr buildr /opt/jruby/bin/buildr 1
+RUN update-alternatives --install /usr/local/bin/buildr buildr /opt/jruby/bin/buildr 1 \
+&& update-alternatives --install /usr/local/bin/jruby jruby /opt/jruby/bin/jruby 1
 
 ENV WORKSPACE /workspace
 VOLUME /workspace
