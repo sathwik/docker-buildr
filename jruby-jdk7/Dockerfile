@@ -1,9 +1,9 @@
 FROM openjdk:7
 
-MAINTAINER Tammo van Lessen
+MAINTAINER Sathwik B P
 
-ENV JRUBY_VERSION 1.7.16
-ENV BUILDR_VERSION 1.4.22
+ENV JRUBY_VERSION 1.7.26
+ENV BUILDR_VERSION 1.4.25
 
 RUN mkdir /opt/jruby \
   && curl http://jruby.org.s3.amazonaws.com/downloads/${JRUBY_VERSION}/jruby-bin-${JRUBY_VERSION}.tar.gz \
@@ -19,6 +19,8 @@ RUN gem install buildr -v=${BUILDR_VERSION}
 
 # make /tmp available to all users.
 RUN chmod 777 -R /tmp && chmod o+t -R /tmp
+
+RUN ln -s /opt/jruby/bin/buildr /usr/local/bin/buildr
 
 ENV WORKSPACE /workspace
 VOLUME /workspace
