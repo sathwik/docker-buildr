@@ -21,13 +21,13 @@ ENV PATH /opt/jruby/bin:$PATH
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc
 
 RUN gem install bundler
-RUN gem install jruby-openssl -v${JRUBY_OPENSSL_VERSION}
-RUN gem install buildr -v=${BUILDR_VERSION}
-RUN gem install rspec-expectations -v=${RSPEC-EXPECTATIONS}
-RUN gem install rspec-mocks -v=${RSPEC-MOCKS}
-RUN gem install rspec-core -v=${RSPEC-CORE}
-RUN gem install rspec -v=${RSPEC}
-RUN gem install nokogiri -v=${NOKOGIRI}
+RUN gem install jruby-openssl -v ${JRUBY_OPENSSL_VERSION}
+RUN gem install buildr -v ${BUILDR_VERSION}
+RUN gem install rspec-expectations -v ${RSPEC-EXPECTATIONS}
+RUN gem install rspec-mocks -v ${RSPEC-MOCKS}
+RUN gem install rspec-core -v ${RSPEC-CORE}
+RUN gem install rspec -v ${RSPEC}
+RUN gem install nokogiri -v ${NOKOGIRI}
 
 # make /tmp available to all users.
 RUN chmod 777 -R /tmp && chmod o+t -R /tmp
